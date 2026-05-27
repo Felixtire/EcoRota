@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+html, body{
+  margin: 0;
+  padding: 0;
+  background-color: #EAF5EE;
+  font-family: Roboto, system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+}
+
+
+@keyframes enterUp {
+  from { opacity: 0; transform: translateY(12px) scale(0.995); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+
+app-root > * {
+  opacity: 0;
+  transform: translateY(10px) scale(0.998);
+  animation: enterUp 420ms cubic-bezier(.2,.9,.28,1) both;
+  will-change: opacity, transform;
+}
+
+
+app-root > * > * {
+  opacity: 0;
+  transform: translateY(8px) scale(0.998);
+  animation: enterUp 520ms cubic-bezier(.2,.9,.28,1) both;
+  animation-delay: 80ms;
+}
+
+.animate-in {
+  opacity: 0;
+  transform: translateY(12px) scale(0.995);
+  animation: enterUp 480ms cubic-bezier(.2,.9,.28,1) both;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  app-root > *, app-root > * > *, .animate-in {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+

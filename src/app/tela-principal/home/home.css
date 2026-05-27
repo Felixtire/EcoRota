@@ -1,0 +1,62 @@
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+
+
+  width: min(1100px, calc(100% - 60px));
+  max-width: 1100px;
+  padding: 40px 48px;
+  box-sizing: border-box;
+
+
+  min-height: 60vh;
+  height: 80vh;
+
+  background-color: #184D36;
+  border-radius: 16px;
+  box-shadow: 10px 10px 5px rgba(60, 60, 60, 0.35);
+
+  opacity: 0;
+  transform-origin: center;
+  animation: fadeUp 700ms cubic-bezier(.22,.9,.32,1) both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translate(-50%, -40%) scale(0.985); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.main-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+.main-content h1{
+  color: #ffffff;
+  /* fonte responsiva */
+  font-size: clamp(26px, 5vw, 56px);
+  margin: 0;
+}
+
+.main-content p{
+  color: #ffffff;
+  font-size: clamp(14px, 2.2vw, 20px);
+  margin-top: 12px;
+  max-width: 820px;
+}
+
+/* Pequenas melhorias responsivas */
+@media (max-width: 600px) {
+  .container{ padding: 24px; width: calc(100% - 32px); left: 50%; }
+  .main-content h1{ font-size: 28px; }
+}

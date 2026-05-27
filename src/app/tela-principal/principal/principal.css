@@ -1,0 +1,98 @@
+.main{
+  display: flex;
+  min-height: 100vh; /* garante que pelo menos a altura da viewport seja ocupada */
+}
+
+.side-bar{
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  background-color: #184D36;
+  height: 100vh; /* ocupa a altura total da janela */
+  position: sticky;
+  top: 0; /* permanece visível ao rolar */
+  padding: 20px 16px;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.12);
+  gap: 24px;
+}
+
+.leaf-icon{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.leaf-icon img{
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.leaf-icon span{
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.routes{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* estilo dos links como botões da sidebar */
+.side-bar .routes a{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: #eafaf0;
+  text-decoration: none;
+  font-weight: 700;
+  background: transparent;
+  transition: background 180ms ease, transform 120ms ease, box-shadow 180ms ease;
+}
+
+.side-bar .routes a:hover{
+  background: rgba(255,255,255,0.04);
+  transform: translateX(4px);
+  box-shadow: 0 6px 18px rgba(8,64,40,0.07);
+}
+
+/* ativo - melhora a visibilidade do link atual */
+.side-bar .routes a.active,
+.side-bar .routes a[aria-current="page"]{
+  background: linear-gradient(90deg,#1e7f4a,#2bb673);
+  color: white;
+  transform: none;
+  box-shadow: 0 12px 30px rgba(16,120,64,0.14);
+}
+
+/* icone da rota (usa emoji ou svg inline) */
+.side-bar .routes a .icon{
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+
+
+/* estilos opcionais para responsividade */
+@media (max-width: 900px){
+  .side-bar{
+    position: relative;
+    height: auto;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+  }
+  .routes{flex-direction: row;gap:10px}
+  .side-bar .routes a{padding:8px 10px;font-size:14px}
+  .main{flex-direction:column}
+}
