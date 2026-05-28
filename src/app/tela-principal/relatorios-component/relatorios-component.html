@@ -1,1 +1,117 @@
-<p>relatorios-component works!</p>
+<div class="relatorios-page">
+  <header class="relatorios-header">
+    <div class="titulo-area">
+      <div class="icone-header">
+        <span>▥</span>
+      </div>
+
+      <div>
+        <h1>Relatórios</h1>
+        <p>Visualize e analise os relatórios de consumo e gastos de energia.</p>
+      </div>
+    </div>
+
+    <div class="acoes-header">
+      <button class="botao-periodo">📅 {{ periodo }} ˅</button>
+
+      <button class="botao-exportar" (click)="exportarRelatorio()">
+        ⬇ Exportar ˅
+      </button>
+    </div>
+  </header>
+
+  <section class="cards-resumo">
+    @for (card of cardsResumo; track card.titulo) {
+      <article class="card">
+        <div [attr.class]="'card-icone ' + card.cor">
+          {{ card.icone }}
+        </div>
+
+        <div>
+          <p>{{ card.titulo }}</p>
+          <h2>{{ card.valor }}</h2>
+          <span>{{ card.descricao }}</span>
+        </div>
+      </article>
+    }
+  </section>
+
+  <section class="graficos-area">
+    <article class="grafico-card grafico-linha">
+      <h3>Consumo de Energia (kWh)</h3>
+
+      <div class="grafico-simulado">
+        <div class="linha horizontal h1"></div>
+        <div class="linha horizontal h2"></div>
+        <div class="linha horizontal h3"></div>
+        <div class="linha horizontal h4"></div>
+
+        <svg viewBox="0 0 700 190" preserveAspectRatio="none">
+          <polyline
+            points="0,140 40,110 80,75 120,100 160,98 200,65 240,95 280,88 320,85 360,90 400,108 440,82 480,88 520,98 560,66 600,102 640,88 670,104 700,72"
+          />
+        </svg>
+
+        <div class="datas">
+          <span>01/05</span>
+          <span>06/05</span>
+          <span>11/05</span>
+          <span>16/05</span>
+          <span>21/05</span>
+          <span>26/05</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="grafico-card grafico-pizza">
+      <h3>Consumo por Equipamento</h3>
+
+      <div class="pizza-conteudo">
+        <div class="pizza"></div>
+
+        <div class="legenda">
+          @for (item of consumoPorEquipamento; track item.nome) {
+            <div class="legenda-item">
+              <span [attr.class]="'cor ' + item.cor"></span>
+              <p>{{ item.nome }}</p>
+              <strong>{{ item.percentual }} ({{ item.consumo }})</strong>
+            </div>
+          }
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="tabela-card">
+    <table>
+      <thead>
+        <tr>
+          <th>Equipamento</th>
+          <th>Consumo (kWh)</th>
+          <th>Custo (R$)</th>
+          <th>Uso Diário Médio</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (equipamento of equipamentos; track equipamento.nome) {
+          <tr>
+            <td>{{ equipamento.nome }}</td>
+            <td>{{ equipamento.consumo }}</td>
+            <td>{{ equipamento.custo }}</td>
+            <td>{{ equipamento.usoDiario }}</td>
+            <td>
+              <button
+                class="acao"
+                (click)="visualizarEquipamento(equipamento.nome)"
+              >
+                👁
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+</div>
