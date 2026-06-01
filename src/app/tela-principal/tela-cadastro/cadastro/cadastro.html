@@ -33,12 +33,13 @@
         Crie sua conta
       </span>
 
-      <form>
+      <form [formGroup]="formulario">
 
         <div class="input-group">
           <input
             type="text"
             placeholder="Nome completo"
+            formControlName="nomeCompleto"
           >
         </div>
 
@@ -46,20 +47,26 @@
           <input
             type="text"
             placeholder="Telefone"
+            formControlName="telefone"
           >
         </div>
 
-        <div class="input-group">
+        <div class="input-group" [ngClass]="valido ? 'campoInvalido' : '' ">
           <input
             type="email"
             placeholder="E-mail"
+            formControlName="email"
           >
         </div>
+        @if (valido){
+        <p class="campoInvalido-alert" >Email já cadastrado!</p>
+        }
 
         <div class="input-group">
           <input
             type="password"
             placeholder="Senha"
+            formControlName="senha"
           >
         </div>
 
@@ -67,10 +74,14 @@
           <input
             type="password"
             placeholder="Repetir senha"
+            formControlName="confirmarSenha"
           >
         </div>
+        @if (validacaoSenha){
+          <p class="campoInvalido-alert" >Senhas diferentes!</p>
+        }
 
-        <button class="btn-register">
+        <button class="btn-register" (click)="enviarFormulario()">
 
           Criar conta
 

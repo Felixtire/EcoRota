@@ -249,3 +249,18 @@ form{
   }
 
 }
+
+
+.campoInvalido{
+  border-radius: 40px;
+  border: 2px solid red !important;
+}
+
+.campoInvalido-alert{
+  color: #535353;
+  font-weight: bold;
+  font-size: 9px;
+  margin-top: -15px;
+  margin-bottom: 15px;
+
+}

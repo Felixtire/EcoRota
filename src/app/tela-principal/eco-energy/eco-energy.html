@@ -1,93 +1,141 @@
-
 <div class="principal">
 
   <div class="cabecalho">
 
-    <div class="img-calculadora">
-
-    </div>
+    <div class="img-calculadora"></div>
 
     <div class="title-cabecalho">
       <h1>Calculadora de Gasto Energético</h1>
       <h2>Calcule o consumo e o custo de energia do seu equipamento</h2>
     </div>
 
-
-
   </div>
-
 
   <div class="main">
 
+    <!-- FORMULÁRIO -->
     <div class="calculadora-inputs">
+
       <p class="title">
         Dados do Equipamento
       </p>
 
-      <div class="input-group">
-        <label for="potencia">Potência (W):</label>
-        <input type="number" id="potencia" placeholder="Ex: 1000">
+      <form [formGroup]="formCalculo">
+
+        <div class="input-group">
+          <label for="potencia">Potência (W):</label>
+          <input
+            type="number"
+            id="potencia"
+            placeholder="Ex: 1000"
+            formControlName="potencia">
+        </div>
+
+        <div class="input-group">
+          <label for="tempoUso">Tempo de uso diário (h):</label>
+          <input
+            type="number"
+            id="tempoUso"
+            placeholder="Ex: 8"
+            formControlName="tempoUso">
+        </div>
+
+        <div class="input-group">
+          <label for="dias">Quantidade de dias no mês:</label>
+          <input
+            type="number"
+            id="dias"
+            placeholder="Ex: 30"
+            formControlName="dias">
+        </div>
+
+        <div class="input-group">
+          <label for="custo">Custo do kWh (R$/kWh):</label>
+          <input
+            type="number"
+            step="0.01"
+            id="custo"
+            placeholder="Ex: 0.85"
+            formControlName="custo">
+        </div>
+
+      </form>
+
+      <button
+        class="calcular-btn"
+        (click)="executarCalculo()">
+        Calcular
+      </button>
+
+      <button
+        class="calcular-btn"
+        type="reset">
+        Limpar
+      </button>
+
     </div>
 
-      <div class="input-group">
-        <label for="potencia">Tempo de uso diário:</label>
-        <input type="number" id="potencia" placeholder="Ex: 8">
-      </div>
-
-      <div class="input-group">
-        <label for="potencia">Quantidade de dias no mês:</label>
-        <input type="number" id="potencia" placeholder="30">
-      </div>
-
-      <div class="input-group">
-        <label for="potencia">Custo do kWH:</label>
-        <input type="number" id="potencia" placeholder="0,85">
-      </div>
-
-      <button class="calcular-btn">Calcular</button>
-
-      <button class="calcular-btn">Limpar</button>
-
-
-  </div>
-
+    <!-- RESULTADOS -->
     <div class="resultado">
+
       <p class="title">
         Resultado
       </p>
 
       <div class="resultado-item">
         <span>Consumo diário:</span>
-        <span id="consumo">0</span>
+        <span>
+          {{ consumoDiarioValor | number:'1.2-2' }} kWh
+        </span>
       </div>
 
       <div class="resultado-item">
         <span>Consumo mensal:</span>
-        <span id="custo">0</span>
+        <span>
+          {{ consumoMensalValor | number:'1.2-2' }} kWh
+        </span>
       </div>
 
       <div class="resultado-item">
-        <span>Custo diário (R$):</span>
-        <span id="custo">0</span>
+        <span>Custo diário:</span>
+        <span>
+          R$ {{ custoDiarioValor | number:'1.2-2' }}
+        </span>
       </div>
 
       <div class="resultado-item">
-        <span>Custo mensal (R$):</span>
-        <span id="custo">0</span>
+        <span>Custo mensal:</span>
+        <span>
+          R$ {{ custoMensalValor | number:'1.2-2' }}
+        </span>
       </div>
 
-      <div class="formula"><p>IMG Fórmula: Consumo(kWh) = Potência (kW) x Tempo(h) x Dias do mês <br> Custo = Consumo(kWh) x Custo do kWh (R$)</p>  </div>
+      <div class="formula">
+        <h3>Fórmulas Utilizadas</h3>
+
+        <p>
+          Consumo Diário (kWh) =
+          Potência (W) × Tempo de Uso (h) ÷ 1000
+        </p>
+
+        <p>
+          Consumo Mensal (kWh) =
+          Consumo Diário × Dias do Mês
+        </p>
+
+        <p>
+          Custo Diário (R$) =
+          Consumo Diário × Custo do kWh
+        </p>
+
+        <p>
+          Custo Mensal (R$) =
+          Consumo Mensal × Custo do kWh
+        </p>
+      </div>
 
     </div>
 
-
-
-
-</div>
-
-
-
+  </div>
 
 </div>
-
-
